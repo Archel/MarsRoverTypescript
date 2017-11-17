@@ -1,5 +1,6 @@
 import Coordinate from "../src/Coordinate";
 import { Direction } from "../src/Direction";
+import OutOfBoundsException from "../src/Errors/OutOfBoundsException";
 import { Instruction } from "../src/Instruction";
 import Position from "../src/Position";
 import RoverEngine from "../src/RoverEngine";
@@ -72,5 +73,14 @@ describe("Rover Engine should", () => {
 
         roverEngine.exec(Instruction.R);
         expect(roverEngine.printPosition()).toBe("0 0 N");
+    });
+
+    it("should an exception if it is moving out of bounds", () => {
+        const coordinate = new Coordinate(0, 0);
+        const roverEngine = buildRoverEngine(coordinate, Direction.N);
+
+        expect(() => {
+            roverEngine.exec(Instruction.M);
+        }).toThrow(OutOfBoundsException);
     });
 });

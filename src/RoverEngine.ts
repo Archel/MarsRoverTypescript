@@ -1,5 +1,6 @@
 import Coordinate from "./Coordinate";
 import { Direction } from "./Direction";
+import OutOfBoundsException from "./Errors/OutOfBoundsException";
 import { Instruction } from "./Instruction";
 import Position from "./Position";
 
@@ -31,7 +32,13 @@ export default class RoverEngine {
     }
 
     private move(): void {
-        this.position = this.position.forward();
+        const newPosition = this.position.forward();
+
+        if (this.isOutOfBounds(newPosition)) {
+            throw new OutOfBoundsException();
+        }
+
+        this.position = newPosition;
     }
 
     private turnLeft(): void {
@@ -40,5 +47,9 @@ export default class RoverEngine {
 
     private turnRight(): void {
         this.position = this.position.rotateRight();
+    }
+
+    private isOutOfBounds(position: Position): boolean {
+        return true;
     }
 }
