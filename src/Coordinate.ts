@@ -6,4 +6,8 @@ export default class Coordinate {
         this.x = x;
         this.y = y;
     }
+
+    public toString(): string {
+        return this.x + " " + this.y;
+    }
 }

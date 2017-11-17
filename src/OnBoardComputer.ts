@@ -1,13 +1,20 @@
-import CommandFactory from "./CommandFactory";
+import Command from "./Command";
+import CommandParser from "./CommandParser";
+import RoverEngine from "./RoverEngine";
 
 export default class OnBoardComputer {
-    private commandFactory: CommandFactory;
-    
-    constructor(commandFactory: CommandFactory) {
-        this.commandFactory = commandFactory;
+    private commandParser: CommandParser;
+    private roverEngine: RoverEngine;
+
+    constructor(commandFactory: CommandParser) {
+        this.commandParser = commandFactory;
     }
 
     public execute(input: string): void {
-        const command = this.commandFactory.parse(input);
+        const command = this.commandParser.parse(input);
+    }
+
+    private initializeRoverEngine(command: Command): void {
+        this.roverEngine = RoverEngine.fromCommand(command);
     }
 }
