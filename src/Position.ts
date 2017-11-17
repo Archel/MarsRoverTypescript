@@ -18,6 +18,12 @@ ROTATE_RIGHT_TRANSFORMATION[NORTH] = EAST;
 ROTATE_RIGHT_TRANSFORMATION[SOUTH] = WEST;
 ROTATE_RIGHT_TRANSFORMATION[WEST] = NORTH;
 
+const GO_FORWARD_TRANSFORMATION = {};
+GO_FORWARD_TRANSFORMATION[EAST]  = { x: 1, y: 0 },
+GO_FORWARD_TRANSFORMATION[NORTH] = { x: 0, y: -1 };
+GO_FORWARD_TRANSFORMATION[SOUTH] = { x: 0, y: 1 };
+GO_FORWARD_TRANSFORMATION[WEST]  = { x: -1, y: 0 };
+
 export default class Position {
     public static fromStatment(statment: string): Position {
         const position = statment.split(" ");
@@ -47,5 +53,10 @@ export default class Position {
 
     public rotateRight(): Position {
         return new Position(this.coordinate, ROTATE_RIGHT_TRANSFORMATION[this.direction]);
+    }
+
+    public forward(): Position {
+        const newCoordinate = this.coordinate.applyTransformation(GO_FORWARD_TRANSFORMATION[this.direction]);
+        return new Position(newCoordinate, this.direction);
     }
 }

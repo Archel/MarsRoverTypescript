@@ -10,4 +10,10 @@ export default class Coordinate {
     public toString(): string {
         return this.x + " " + this.y;
     }
+
+    public applyTransformation({x, y}): Coordinate {
+        const newX = this.x + x;
+        const newY = this.y + y;
+        return new Coordinate(newX, newY);
+    }
 }

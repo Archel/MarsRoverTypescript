@@ -31,7 +31,7 @@ export default class RoverEngine {
     }
 
     private move(): void {
-        this.position = new Position(new Coordinate(0, 0), Direction.N);
+        this.position = this.position.forward();
     }
 
     private turnLeft(): void {
