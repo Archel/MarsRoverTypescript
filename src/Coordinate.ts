@@ -16,4 +16,11 @@ export default class Coordinate {
         const newY = this.y + y;
         return new Coordinate(newX, newY);
     }
+
+    public isBetween(origin, maxCoordinate): boolean {
+        return origin.x <= this.x
+                && origin.y <= this.y
+                && maxCoordinate.x >= this.x
+                && maxCoordinate.y >= this.y;
+    }
 }

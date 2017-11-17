@@ -4,6 +4,8 @@ import OutOfBoundsException from "./Errors/OutOfBoundsException";
 import { Instruction } from "./Instruction";
 import Position from "./Position";
 
+const ORIGIN = new Coordinate(0, 0);
+
 export default class RoverEngine {
     private boundaries: Coordinate;
     private position: Position;
@@ -50,6 +52,6 @@ export default class RoverEngine {
     }
 
     private isOutOfBounds(position: Position): boolean {
-        return true;
+        return !position.isBetween(ORIGIN, this.boundaries);
     }
 }

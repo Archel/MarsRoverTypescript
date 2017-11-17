@@ -59,4 +59,12 @@ export default class Position {
         const newCoordinate = this.coordinate.applyTransformation(GO_FORWARD_TRANSFORMATION[this.direction]);
         return new Position(newCoordinate, this.direction);
     }
+
+    public getCoordinate(): Coordinate {
+        return this.coordinate;
+    }
+
+    public isBetween(origin, maxCoordinate): boolean {
+        return this.coordinate.isBetween(origin, maxCoordinate);
+    }
 }
