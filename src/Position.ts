@@ -6,11 +6,17 @@ const SOUTH = Direction.S;
 const EAST = Direction.E;
 const WEST = Direction.W;
 
-const TURN_LEFT_TRANSFORMATION = {};
-TURN_LEFT_TRANSFORMATION[EAST] = NORTH;
-TURN_LEFT_TRANSFORMATION[NORTH] = WEST;
-TURN_LEFT_TRANSFORMATION[SOUTH] = EAST;
-TURN_LEFT_TRANSFORMATION[WEST] = SOUTH;
+const ROTATE_LEFT_TRANSFORMATION = {};
+ROTATE_LEFT_TRANSFORMATION[EAST] = NORTH;
+ROTATE_LEFT_TRANSFORMATION[NORTH] = WEST;
+ROTATE_LEFT_TRANSFORMATION[SOUTH] = EAST;
+ROTATE_LEFT_TRANSFORMATION[WEST] = SOUTH;
+
+const ROTATE_RIGHT_TRANSFORMATION = {};
+ROTATE_RIGHT_TRANSFORMATION[EAST] = SOUTH;
+ROTATE_RIGHT_TRANSFORMATION[NORTH] = EAST;
+ROTATE_RIGHT_TRANSFORMATION[SOUTH] = WEST;
+ROTATE_RIGHT_TRANSFORMATION[WEST] = NORTH;
 
 export default class Position {
     public static fromStatment(statment: string): Position {
@@ -36,6 +42,10 @@ export default class Position {
     }
 
     public rotateLeft(): Position {
-        return new Position(this.coordinate, TURN_LEFT_TRANSFORMATION[this.direction]);
+        return new Position(this.coordinate, ROTATE_LEFT_TRANSFORMATION[this.direction]);
+    }
+
+    public rotateRight(): Position {
+        return new Position(this.coordinate, ROTATE_RIGHT_TRANSFORMATION[this.direction]);
     }
 }

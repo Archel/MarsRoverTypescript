@@ -20,6 +20,10 @@ export default class RoverEngine {
         if (instruction === Instruction.L) {
             this.turnLeft();
         }
+
+        if (instruction === Instruction.R) {
+            this.turnRight();
+        }
     }
 
     public printPosition(): string {
@@ -32,5 +36,9 @@ export default class RoverEngine {
 
     private turnLeft(): void {
         this.position = this.position.rotateLeft();
+    }
+
+    private turnRight(): void {
+        this.position = this.position.rotateRight();
     }
 }
